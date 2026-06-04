@@ -76,6 +76,16 @@
   letter-spacing: -0.01em;
 }
 
+.navbar__logo {
+  height: 2.125rem;
+  width: clamp(12rem, 26vw, 13.75rem);
+}
+
+.navbar__logo img {
+  height: 100%;
+  width: 100%;
+}
+
 .navbar__tagline {
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.7rem;
@@ -232,5 +242,15 @@ article footer .avatar__subtitle,
 @media (min-width: 997px) {
   .blog-post-page .col.col--7 {
     max-width: 780px;
+  }
+}
+
+@media (max-width: 560px) {
+  .navbar__logo {
+    width: 11.25rem;
+  }
+
+  .navbar__tagline {
+    display: none;
   }
 }

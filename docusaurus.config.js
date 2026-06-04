@@ -23,7 +23,7 @@ module.exports = async function () {
                 onBrokenMarkdownLinks: "warn",
             },
         },
-        favicon: "img/logo.gif",
+        favicon: "img/logo-mark.svg",
 
         organizationName: "works-in-prod",
         projectName: "works-in-prod.github.io",
@@ -81,10 +81,9 @@ module.exports = async function () {
                     respectPrefersColorScheme: true,
                 },
                 navbar: {
-                    title: "Works in Prod",
                     logo: {
                         alt: "Works in Prod",
-                        src: "img/logo.gif",
+                        src: "img/logo.svg",
                     },
                     items: [
                         {

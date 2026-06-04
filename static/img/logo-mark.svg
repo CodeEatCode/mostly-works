@@ -1,0 +1,6 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="mark-title mark-desc">
+  <title id="mark-title">Works in Prod mark</title>
+  <desc id="mark-desc">Compact terminal prompt mark for Works in Prod.</desc>
+  <text x="9" y="43" fill="#0FAF6D" font-family="'IBM Plex Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="34" font-weight="700" letter-spacing="0">$</text>
+  <rect x="42" y="11" width="14" height="32" rx="2" fill="#8BE7E1" shape-rendering="crispEdges"/>
+</svg>
