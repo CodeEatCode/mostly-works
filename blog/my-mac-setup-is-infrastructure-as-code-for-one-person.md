@@ -11,7 +11,6 @@ tags:
   - mise
   - chezmoi
 ---
-
 I have become weirdly happy with my Mac setup.
 
 Not because it is flashy. Not because every prompt, alias, and package has been tuned into some impossible productivity machine. I am happy with it because it has finally become calm.
