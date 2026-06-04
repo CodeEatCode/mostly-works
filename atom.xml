@@ -2,11 +2,95 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://works-in-prod.github.io/</id>
     <title>Works in Prod Blog</title>
-    <updated>2026-06-02T16:45:12.804Z</updated>
+    <updated>2026-06-04T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://works-in-prod.github.io/"/>
     <subtitle>Works in Prod Blog</subtitle>
     <icon>https://works-in-prod.github.io/img/logo-mark.svg</icon>
+    <entry>
+        <title type="html"><![CDATA[My Mac Setup Is Infrastructure as Code for One Person]]></title>
+        <id>https://works-in-prod.github.io/my-mac-setup-is-infrastructure-as-code-for-one-person/</id>
+        <link href="https://works-in-prod.github.io/my-mac-setup-is-infrastructure-as-code-for-one-person/"/>
+        <updated>2026-06-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[A field note on using Homebrew, mise, and chezmoi to make a Mac reproducible without sanding off the human parts.]]></summary>
+        <content type="html"><![CDATA[<p>I have become weirdly happy with my Mac setup.</p>
+<p>Not because it is flashy. Not because every prompt, alias, and package has been tuned into some impossible productivity machine. I am happy with it because it has finally become calm.</p>
+<p>My laptop feels less like a machine I have to remember how to rebuild and more like a small piece of infrastructure I can describe.</p>
+<p>That is the bit I did not expect. This setup gives me the same feeling I used to get from good server bootstrap code. The old world of Chef cookbooks, Puppet manifests, Ansible playbooks, VM provisioning, and "please do not hand-fix the machine" had one core idea behind it: the machine should not be a mystery.</p>
+<p>For some reason, a lot of us accepted that idea for servers years ago and then kept treating our laptops like handcrafted chaos.</p>
+<p>My Mac setup now has the same shape as the infrastructure tooling I used to like, just pointed at one person's workstation:</p>
+<ul>
+<li class="">Homebrew owns the Mac layer.</li>
+<li class=""><a href="https://mise.jdx.dev/" target="_blank" rel="noopener noreferrer" class="">mise</a> owns the developer toolchain layer.</li>
+<li class=""><a href="https://www.chezmoi.io/" target="_blank" rel="noopener noreferrer" class="">chezmoi</a> owns the home-directory shape.</li>
+</ul>
+<p>That split is the whole trick.</p>
+<h2 class="anchor anchorTargetStickyNavbar_xMrH" id="the-setup-is-boring-on-purpose">The Setup Is Boring on Purpose<a href="https://works-in-prod.github.io/my-mac-setup-is-infrastructure-as-code-for-one-person/#the-setup-is-boring-on-purpose" class="hash-link" aria-label="Direct link to The Setup Is Boring on Purpose" title="Direct link to The Setup Is Boring on Purpose" translate="no">​</a></h2>
+<p>I do not want to remember where a runtime came from. I do not want to wonder whether a tool is being managed by the system, a package manager, a project-local wrapper, or something I installed during a late-night debugging session two laptops ago.</p>
+<p>I want boring rules.</p>
+<p>Homebrew installs the things that feel like Mac-level things: desktop apps, system packages, fonts, shells, and the bootstrap pieces that need to exist before anything else can work.</p>
+<p>mise installs the things that feel like developer tools and runtimes:</p>
+<div class="language-toml codeBlockContainer_w0cY theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_bFsw"><pre tabindex="0" class="prism-code language-toml codeBlock_f2wt thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_oHW0"><div class="token-line" style="color:#F8F8F2"><span class="token plain">[tools]</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">runtime-a = "latest"</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">runtime-b = "latest"</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">formatter = "latest"</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">search-tool = "latest"</span><br></div></code></pre></div></div>
+<p>chezmoi manages the files and decisions that make the machine feel like mine: shell startup, aliases, prompt setup, editor defaults, package inventories, and the scripts that check whether reality has drifted from the source.</p>
+<p>None of that is clever by itself. The useful part is that each tool has a job and mostly stays in its lane.</p>
+<p>When I need a Mac app, I think Homebrew.</p>
+<p>When I need a language runtime or project-facing CLI, I think mise.</p>
+<p>When I need a shell behavior or dotfile, I think chezmoi.</p>
+<p>That is a much nicer mental model than "I probably installed this with whatever the README told me in 2021."</p>
+<h2 class="anchor anchorTargetStickyNavbar_xMrH" id="mise-is-the-toolchain-layer">mise Is the Toolchain Layer<a href="https://works-in-prod.github.io/my-mac-setup-is-infrastructure-as-code-for-one-person/#mise-is-the-toolchain-layer" class="hash-link" aria-label="Direct link to mise Is the Toolchain Layer" title="Direct link to mise Is the Toolchain Layer" translate="no">​</a></h2>
+<p>I already wrote about using mise to make <a class="" href="https://works-in-prod.github.io/stop-arguing-with-your-terminal-about-python-versions/">project setup boring</a>, so I will not rehash that whole argument here.</p>
+<p>The short version: mise is where the developer toolchain belongs. Language runtimes, formatters, search tools, CLIs, and project-adjacent utilities all live behind one model. The exact list changes over time, but the ownership rule does not.</p>
+<p>In this post, the important thing is not any specific tool. It is the boundary. If something is part of the developer toolbox, it goes in the toolchain layer instead of becoming another one-off shell snippet or README memory.</p>
+<h2 class="anchor anchorTargetStickyNavbar_xMrH" id="chezmoi-is-the-memory">chezmoi Is the Memory<a href="https://works-in-prod.github.io/my-mac-setup-is-infrastructure-as-code-for-one-person/#chezmoi-is-the-memory" class="hash-link" aria-label="Direct link to chezmoi Is the Memory" title="Direct link to chezmoi Is the Memory" translate="no">​</a></h2>
+<p>chezmoi is the part that makes the setup feel like infrastructure instead of a pile of dotfiles.</p>
+<p>The workflow is wonderfully unromantic:</p>
+<div class="language-bash codeBlockContainer_w0cY theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_bFsw"><pre tabindex="0" class="prism-code language-bash codeBlock_f2wt thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_oHW0"><div class="token-line" style="color:#F8F8F2"><span class="token plain">chezmoi diff</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">chezmoi apply</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">chezmoi status</span><br></div></code></pre></div></div>
+<p>That is exactly what I want from workstation config. Show me what will change. Apply it when I am ready. Tell me when the rendered machine has drifted.</p>
+<p>The other big win is templating. Some parts of a setup should be shared across machines. Some should absolutely not be hardcoded into a repo. The structure can be tracked, while machine-specific values live outside the public source.</p>
+<p>That gives me a setup that is reproducible without pretending every context is identical.</p>
+<p>The shell setup is where this pays off every day. Bash and zsh can share common interactive behavior. Aliases live in one place. PATH setup has a home. Optional shell helpers get initialized consistently. The rc files stop being junk drawers and start being entry points.</p>
+<p>It feels small, but it changes how I edit the setup. I am no longer thinking, "Which file did I hack this into?" I am thinking, "Which layer owns this?"</p>
+<p>That is infrastructure thinking, but for a laptop.</p>
+<h2 class="anchor anchorTargetStickyNavbar_xMrH" id="the-old-cookbook-feeling-but-personal">The Old Cookbook Feeling, but Personal<a href="https://works-in-prod.github.io/my-mac-setup-is-infrastructure-as-code-for-one-person/#the-old-cookbook-feeling-but-personal" class="hash-link" aria-label="Direct link to The Old Cookbook Feeling, but Personal" title="Direct link to The Old Cookbook Feeling, but Personal" translate="no">​</a></h2>
+<p>The funny thing is that none of this feels new in spirit.</p>
+<p>If you have used Chef cookbooks, Puppet modules, Ansible roles, cloud-init, golden images, or any other bootstrap tooling, the shape is familiar. You describe the desired machine. You stop trusting hand-applied changes. You make rebuilds less dramatic.</p>
+<p>The vocabulary was always slightly different. Chef had cookbooks and recipes. Puppet had manifests and modules. Ansible had playbooks and roles. But the emotional payoff was the same: the machine stopped being a collection of remembered commands and became something you could rebuild from a source of truth.</p>
+<p>What feels different is the scale.</p>
+<p>The production system is not a fleet of servers. It is me. My shell. My editor habits. My prompt. My aliases. My ability to open a new terminal on a Monday morning and not spend the first fifteen minutes negotiating with my own computer.</p>
+<p>That makes the setup feel more personal, not less.</p>
+<p>There is a temptation to think reproducible setups have to become sterile. I have found the opposite. The more of my setup I can describe cleanly, the more comfortable I am making it mine. I can add a little alias, change a prompt theme, adjust a package list, or move a tool to the right owner because I know where the change belongs.</p>
+<p>The machine still has taste. It just has fewer rituals.</p>
+<h2 class="anchor anchorTargetStickyNavbar_xMrH" id="the-doctor-script-is-part-of-the-mood">The Doctor Script Is Part of the Mood<a href="https://works-in-prod.github.io/my-mac-setup-is-infrastructure-as-code-for-one-person/#the-doctor-script-is-part-of-the-mood" class="hash-link" aria-label="Direct link to The Doctor Script Is Part of the Mood" title="Direct link to The Doctor Script Is Part of the Mood" translate="no">​</a></h2>
+<p>One of my favorite pieces is not a package manager or a runtime manager. It is the boring check at the end.</p>
+<p>After apply, a doctor script looks around and tells me whether the important pieces are present. Are the expected layers reachable? Did a package inventory drift? Did a rendered file stop matching the source?</p>
+<p>This is not sophisticated observability. It is a small health check for a workstation.</p>
+<p>But that is exactly why I like it. It turns "something feels off" into a list. It makes drift visible. It gives the setup a feedback loop.</p>
+<p>That is another old infrastructure habit that belongs on laptops: do not rely on vibes when a small check will do.</p>
+<h2 class="anchor anchorTargetStickyNavbar_xMrH" id="the-tradeoff-is-maintenance">The Tradeoff Is Maintenance<a href="https://works-in-prod.github.io/my-mac-setup-is-infrastructure-as-code-for-one-person/#the-tradeoff-is-maintenance" class="hash-link" aria-label="Direct link to The Tradeoff Is Maintenance" title="Direct link to The Tradeoff Is Maintenance" translate="no">​</a></h2>
+<p>This setup is not free.</p>
+<p>You have to maintain the boundary between Homebrew, mise, and chezmoi. You have to review diffs. You have to resist the urge to paste random installer snippets into shell startup files. You have to update the source when you make a real change.</p>
+<p>But that is the right kind of work.</p>
+<p>I would rather maintain a visible source of truth than maintain a vague memory of how a machine became useful. I would rather ask "which layer owns this?" once than rediscover the answer every time I replace a laptop.</p>
+<p>The goal is not to automate every possible thing. The goal is to make the important parts reviewable, repeatable, and boring enough that they stop occupying my head.</p>
+<h2 class="anchor anchorTargetStickyNavbar_xMrH" id="a-well-documented-pet">A Well-Documented Pet<a href="https://works-in-prod.github.io/my-mac-setup-is-infrastructure-as-code-for-one-person/#a-well-documented-pet" class="hash-link" aria-label="Direct link to A Well-Documented Pet" title="Direct link to A Well-Documented Pet" translate="no">​</a></h2>
+<p>People like to say servers should be cattle, not pets. I understand the point, but I do not really want my laptop to be cattle. It is too personal for that.</p>
+<p>I also do not want it to be a mysterious pet that only behaves because I remember the right incantations.</p>
+<p>Maybe the right category is a well-documented pet.</p>
+<p>It has preferences. It has personality. It has little affordances that make it feel like mine. But if it disappears tomorrow, I have a map. I know which tool owns which layer. I know how to review the change before applying it. I know the setup is not trapped in one physical machine.</p>
+<p>That is what makes me happy about this setup.</p>
+<p>Not that it is perfect. Not that it is minimal. Not that it is a public template everyone should copy exactly.</p>
+<p>It is mine, and it is rebuildable.</p>
+<p>That combination is the part I wanted all along.</p>]]></content>
+        <author>
+            <name>Danish Javed</name>
+            <uri>https://github.com/ambersariya</uri>
+        </author>
+        <category label="macos" term="macos"/>
+        <category label="tooling" term="tooling"/>
+        <category label="developer-experience" term="developer-experience"/>
+        <category label="mise" term="mise"/>
+        <category label="chezmoi" term="chezmoi"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[AI Coding Has Moved From Generation to Supervision]]></title>
         <id>https://works-in-prod.github.io/ai-coding-has-moved-from-generation-to-supervision/</id>
