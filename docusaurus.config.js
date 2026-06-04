@@ -122,30 +122,35 @@ module.exports = async function () {
                     },
                     items: [
                         {
+                            type: "html",
+                            position: "left",
+                            value: '<span class="navbar__tagline">Vibe-posted. Fact-checked. Mostly.</span>',
+                        },
+                        {
                             to: "/",
                             label: "Home",
-                            position: "left",
+                            position: "right",
                             exact: true,
                         },
                         {
                             to: "/archive/",
                             label: "Blog",
-                            position: "left",
+                            position: "right",
                         },
                         {
                             to: "/tags/",
                             label: "Tags",
-                            position: "left",
+                            position: "right",
                         },
                         {
                             to: "/about/",
                             label: "About",
-                            position: "left",
+                            position: "right",
                         },
                         {
                             type: "html",
-                            position: "left",
-                            value: '<span class="navbar__tagline">Vibe-posted. Fact-checked. Mostly.</span>',
+                            position: "right",
+                            value: '<span class="navbar__right-spacer" aria-hidden="true"></span>',
                         },
                         {
                             type: "html",
