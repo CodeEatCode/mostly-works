@@ -1,6 +1,6 @@
 ---
 title: JSON Web Tokens
-slug: JSON-WEB-TOKEN
+slug: json-web-token
 description: Repost from https://medium.com/@ambersariya/jwt-json-web-token-cd90ef7a7a66
 modified: 2022-05-19T11:04:47.557Z
 date: 2017-02-28T11:45:44.128Z

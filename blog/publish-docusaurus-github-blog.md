@@ -1,5 +1,5 @@
 ---
-slug: publish-docusaurus-github-blog.md
+slug: publish-docusaurus-github-blog
 title: Publish Docusaurus blog on Github Pages
 tags:
   - docusaurus
