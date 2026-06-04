@@ -48,11 +48,11 @@ more. Supervision is.
 <!-- truncate -->
 
 This is also why the older engineering practices suddenly look current again.
-The point of [TDD](/blog/tdd-was-solving-the-agent-problem-before-agents-existed)
+The point of [TDD](/tdd-was-solving-the-agent-problem-before-agents-existed)
 was never just writing tests before code. It was creating a tight feedback loop
-around intent. The point of [CI rules](/blog/your-codebase-has-rules-does-ci-know-that)
+around intent. The point of [CI rules](/your-codebase-has-rules-does-ci-know-that)
 was never just keeping a pipeline green. It was making repository expectations
-executable. The point of a [walking skeleton](/blog/the-blockers-dont-care-that-youre-using-ai)
+executable. The point of a [walking skeleton](/the-blockers-dont-care-that-youre-using-ai)
 was never to ship a toy version. It was to flush out system boundaries early.
 
 AI did not make those things obsolete. It made the absence of them more
