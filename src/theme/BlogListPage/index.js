@@ -56,9 +56,10 @@ const TERMINAL_LINES = [
 ];
 
 const CURRENT_FOCUS = [
-  'AI systems that fail in surprising ways',
-  'Architecture rules that keep teams honest',
-  'Testing as documentation for humans and agents',
+  { label: 'Building', items: ['TripForge'] },
+  { label: 'Learning', items: ['Agentic systems'] },
+  { label: 'Community', items: ['Software Crafters Manchester'] },
+  { label: 'Reading', items: ['Designing Data-Intensive Applications'] },
 ];
 
 // Keep this list short and intentional. Titles must match generated blog metadata.
@@ -147,7 +148,7 @@ function PostCard({post, variant = 'standard'}) {
       )}
       <PostTags tags={post.tags} />
       <Link className="wip-read-more" to={post.permalink}>
-        Read more
+        Read more <span aria-hidden="true" className="wip-read-more__arrow">→</span>
       </Link>
     </article>
   );
@@ -288,12 +289,19 @@ function CurrentFocusCard() {
   return (
     <section className="wip-focus-card" aria-labelledby="focus-title">
       <p className="wip-eyebrow">Current focus</p>
-      <h2 id="focus-title">What keeps showing up in the work</h2>
-      <ul>
-        {CURRENT_FOCUS.map((item) => (
-          <li key={item}>{item}</li>
+      <h2 id="focus-title">What I'm working on</h2>
+      <div className="wip-focus-grid">
+        {CURRENT_FOCUS.map((group) => (
+          <div className="wip-focus-group" key={group.label}>
+            <p className="wip-focus-group__label">{group.label}</p>
+            <ul>
+              {group.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }

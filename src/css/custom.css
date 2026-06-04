@@ -539,6 +539,10 @@ button:focus-visible,
 
 .wip-post-card--featured {
   min-height: 24rem;
+  border-top: 2px solid var(--wip-accent);
+  background:
+    linear-gradient(180deg, rgba(34, 197, 94, 0.055), rgba(255, 255, 255, 0.012)),
+    color-mix(in srgb, var(--wip-bg-elevated) 90%, transparent);
 }
 
 .wip-post-card__meta {
@@ -619,6 +623,16 @@ button:focus-visible,
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.82rem;
   font-weight: 600;
+  text-decoration: none;
+}
+
+.wip-read-more__arrow {
+  display: inline-block;
+  transition: transform 160ms ease;
+}
+
+.wip-read-more:hover .wip-read-more__arrow {
+  transform: translateX(4px);
 }
 
 .wip-homepage-split {
@@ -678,30 +692,46 @@ button:focus-visible,
   text-decoration: none;
 }
 
-.wip-focus-card ul {
+.wip-focus-grid {
   display: grid;
-  gap: 0.7rem;
-  margin: 1rem 0 0;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem 1.5rem;
+  margin-top: 1.15rem;
+}
+
+.wip-focus-group__label {
+  margin: 0 0 0.45rem;
+  color: var(--wip-warm);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.wip-focus-group ul {
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.wip-focus-card li {
+.wip-focus-group li {
   position: relative;
-  padding-left: 1.2rem;
+  padding-left: 1.1rem;
   color: var(--wip-text-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
-.wip-focus-card li::before {
+.wip-focus-group li::before {
   position: absolute;
-  top: 0.72em;
+  top: 0.62em;
   left: 0;
-  width: 0.42rem;
-  height: 0.42rem;
+  width: 0.38rem;
+  height: 0.38rem;
   border-radius: 50%;
   content: "";
   background: var(--wip-accent);
-  box-shadow: 0 0 0 0.35rem var(--wip-accent-soft);
 }
 
 .wip-recent-list {
