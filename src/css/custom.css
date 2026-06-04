@@ -198,7 +198,7 @@ button:focus-visible,
 
 .navbar__brand {
   margin-left: -2rem;
-  margin-right: 1.35rem;
+  margin-right: 0.5rem;
 }
 
 .navbar__logo {
@@ -245,7 +245,7 @@ button:focus-visible,
   gap: 0.25rem;
 }
 
-.navbar__right-spacer {
+.navbar__nav-spacer {
   flex: 1;
   display: block;
 }

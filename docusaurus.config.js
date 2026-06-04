@@ -127,6 +127,11 @@ module.exports = async function () {
                             value: '<span class="navbar__tagline">Vibe-posted. Fact-checked. Mostly.</span>',
                         },
                         {
+                            type: "html",
+                            position: "right",
+                            value: '<span class="navbar__nav-spacer" aria-hidden="true"></span>',
+                        },
+                        {
                             to: "/",
                             label: "Home",
                             position: "right",
@@ -150,7 +155,7 @@ module.exports = async function () {
                         {
                             type: "html",
                             position: "right",
-                            value: '<span class="navbar__right-spacer" aria-hidden="true"></span>',
+                            value: '<span class="navbar__nav-spacer" aria-hidden="true"></span>',
                         },
                         {
                             type: "html",
