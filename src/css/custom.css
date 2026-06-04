@@ -239,6 +239,10 @@ button:focus-visible,
   white-space: nowrap;
 }
 
+.navbar__items--right {
+  gap: 0.25rem;
+}
+
 .navbar__icon-link {
   display: inline-flex;
   align-items: center;
