@@ -64,6 +64,7 @@ const CURRENT_FOCUS = [
 
 // Keep this list short and intentional. Titles must match generated blog metadata.
 const FEATURED_TITLES = [
+  'My Mac Setup Is Infrastructure as Code for One Person',
   "The Classic 'Works on My Machine' — Now With Neural Networks",
   'We Spent Five Weeks Making Docling Work. Then We Deleted It.',
   'TDD Was Solving the Agent Problem Before Agents Existed',
