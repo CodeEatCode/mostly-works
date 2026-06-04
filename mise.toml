@@ -1,32 +1,32 @@
 [tools]
-node = "20.19.2"
-"npm:yarn" = "1.22.22"
+node = "24.15.0"
+"npm:pnpm" = "11.5.1"
 "aqua:terrastruct/d2" = "0.7.1"
 
 [tasks.install]
 description = "Install locked JavaScript dependencies"
-run = "yarn install --frozen-lockfile"
+run = "pnpm install --frozen-lockfile"
 
 [tasks.dev]
 alias = "start"
 description = "Start the Docusaurus development server"
-run = "yarn start"
+run = "pnpm start"
 
 [tasks.build]
 description = "Build the Docusaurus site"
-run = "yarn build"
+run = "pnpm build"
 
 [tasks."publishing:test"]
 description = "Test the public-seed publishing workflow"
-run = "yarn test:publishing"
+run = "pnpm test:publishing"
 
 [tasks."publishing:check"]
 description = "Check publishing guardrails"
-run = "yarn check:publishing"
+run = "pnpm check:publishing"
 
 [tasks."publishing:draft"]
 description = "Generate a draft from a sanitized public seed card"
-run = "yarn draft:post"
+run = "pnpm draft:post"
 
 [tasks.verify]
 description = "Run publishing checks and build the site"

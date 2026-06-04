@@ -14,13 +14,13 @@ jobs:
       - uses: jdx/mise-action@v4
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
       - name: Test publishing workflow
-        run: yarn test:publishing
+        run: pnpm test:publishing
       - name: Check publishing guardrails
-        run: yarn check:publishing
+        run: pnpm check:publishing
       - name: Build website
-        run: yarn build
+        run: pnpm build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

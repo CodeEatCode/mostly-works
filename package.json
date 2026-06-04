@@ -2,6 +2,7 @@
   "name": "codeeatcode-github-io",
   "version": "0.0.0",
   "private": true,
+  "packageManager": "pnpm@11.5.1",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
@@ -20,7 +21,9 @@
   "dependencies": {
     "@docusaurus/core": "3.10.1",
     "@docusaurus/plugin-content-blog": "3.10.1",
+    "@docusaurus/plugin-content-pages": "3.10.1",
     "@docusaurus/theme-classic": "3.10.1",
+    "@docusaurus/theme-common": "3.10.1",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^1.1.1",
     "prism-react-renderer": "^2.1.0",
@@ -30,12 +33,14 @@
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.10.1",
+    "@docusaurus/plugin-content-docs": "3.10.1",
     "@docusaurus/tsconfig": "3.10.1",
+    "@docusaurus/types": "3.10.1",
     "@types/react": "^18.2.29",
     "typescript": "~5.2.2"
   },
   "engines": {
-    "node": ">=18.0"
+    "node": ">=24.0"
   },
   "browserslist": {
     "production": [

@@ -66,7 +66,7 @@ Use the closest matching template in `publishing/templates/` when one exists. If
    node scripts/publishing/generate-draft.js --seed <seed-name>
    ```
 
-   The package alias is `yarn draft:post --seed <seed-name>` when Yarn is available.
+   The package alias is `pnpm draft:post -- --seed <seed-name>` when pnpm is available.
 4. Create or revise the Docusaurus post under `blog/drafts/` as a local draft unless the user explicitly asked only for review.
 5. Keep the direct answer or core claim near the top. Readers and answer engines should not need to infer the point from a long preamble.
 6. Add evidence-bearing structure: commands, code, examples, tradeoffs, verification notes, diagrams when useful, and authoritative public references where factual or tooling claims need support.
@@ -132,7 +132,7 @@ Before reporting a generated or revised post:
 1. inspect the diff for the post and skill-driven metadata changes
 2. run relevant repo-local generator, check, typecheck, and build commands that exist for the changed surface
 3. for the current publishing workflow, run `node tests/publishing-workflow.test.js` when publishing scripts or templates change and `node scripts/publishing/check-publishing.js` after generated draft changes
-4. for the current Docusaurus baseline, use `yarn typecheck` and `yarn build` when Yarn and dependencies are available
+4. for the current Docusaurus baseline, use `pnpm typecheck` and `pnpm build` when pnpm and dependencies are available
 5. report any command not run, any failed command, and every manual publish check still outstanding
 
 Manual publish checks always include a final human privacy read, source/link review, and an editorial pass against the selected post shape.

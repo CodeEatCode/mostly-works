@@ -12,15 +12,15 @@ repository context, chat exports, or unreviewed transcripts as generation input.
 3. Generate a Docusaurus draft from only the seed card and template:
 
    ```shell
-   yarn draft:post --seed using-mise-to-make-project-setup-boring
+   pnpm draft:post -- --seed using-mise-to-make-project-setup-boring
    ```
 
 4. Run the deterministic publishing checks and site build:
 
    ```shell
-   yarn test:publishing
-   yarn check:publishing
-   yarn build
+   pnpm test:publishing
+   pnpm check:publishing
+   pnpm build
    ```
 
 5. Edit the generated post in `blog/drafts/` while keeping it public-safe.
@@ -61,7 +61,7 @@ that sounds more specific than the safe material allows.
 
 ## Guardrails
 
-`yarn check:publishing` validates seed-card shape, template references, draft
+`pnpm check:publishing` validates seed-card shape, template references, draft
 front matter, and deterministic privacy rules over posts that keep the
 `generated_by: public-seed-draft` marker. It rejects secret-like strings,
 user-local paths, private or local URLs, and high-signal private-context
