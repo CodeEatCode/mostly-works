@@ -13,7 +13,7 @@ import SearchMetadata from '@theme/SearchMetadata';
 import BlogListPageStructuredData from '@theme/BlogListPage/StructuredData';
 
 const SITE_DESCRIPTION =
-  'Production lessons on AI engineering, architecture, testing, observability, and developer experience.';
+  'Production lessons on AI engineering, architecture, testing, observability, developer experience, and technical leadership.';
 
 const TOPICS = [
   {
@@ -46,6 +46,19 @@ const TOPICS = [
     href: '/tags/software-delivery/',
     description: 'Pragmatic delivery notes for teams trying to ship without lying to themselves.',
   },
+];
+
+const TERMINAL_LINES = [
+  ['status', 'shipped'],
+  ['tests', 'mostly green'],
+  ['incidents', 'educational'],
+  ['notes', 'worth writing down'],
+];
+
+const CURRENT_FOCUS = [
+  'AI systems that fail in surprising ways',
+  'Architecture rules that keep teams honest',
+  'Testing as documentation for humans and agents',
 ];
 
 // Keep this list short and intentional. Titles must match generated blog metadata.
@@ -113,10 +126,16 @@ function PostTags({tags}) {
 
 function PostCard({post, variant = 'standard'}) {
   const readingTime = formatReadingTime(post.readingTime);
+  const primaryTag = post.tags?.[0];
 
   return (
     <article className={clsx('wip-post-card', `wip-post-card--${variant}`)}>
       <div className="wip-post-card__meta">
+        {primaryTag && (
+          <Link className="wip-post-card__category" to={primaryTag.permalink}>
+            {primaryTag.label}
+          </Link>
+        )}
         <time dateTime={post.date}>{formatDate(post.date)}</time>
         {readingTime && <span>{readingTime}</span>}
       </div>
@@ -134,34 +153,58 @@ function PostCard({post, variant = 'standard'}) {
   );
 }
 
+function TerminalCard() {
+  return (
+    <aside className="wip-terminal-card" aria-label="Deployment notes">
+      <div className="wip-terminal-card__chrome" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+      </div>
+      <pre>
+        <code>
+          <span className="wip-terminal-card__prompt">$ deploy works-in-prod</span>
+          {'\n\n'}
+          {TERMINAL_LINES.map(([label, value]) => (
+            <React.Fragment key={label}>
+              <span className="wip-terminal-card__key">{label}:</span>{' '}
+              <span>{value}</span>
+              {'\n'}
+            </React.Fragment>
+          ))}
+        </code>
+      </pre>
+    </aside>
+  );
+}
+
 function HomepageHero() {
   return (
     <section className="wip-hero" aria-labelledby="homepage-title">
-      <p className="wip-eyebrow">Vibe-posted. Fact-checked. Mostly.</p>
-      <h1 id="homepage-title">Works in Prod</h1>
-      <p className="wip-hero__subtitle">
-        Production lessons from real software engineering work.
-      </p>
-      <p className="wip-hero__body">
-        Practical notes on AI engineering, architecture, testing, observability,
-        developer experience, and the awkward bits that only show up after
-        something ships.
-      </p>
-      <div className="wip-hero__actions" aria-label="Primary links">
-        <a className="button button--primary" href="#latest-posts">
-          Read latest posts
-        </a>
-        <Link className="button button--secondary" to="/about/">
-          About Danish
-        </Link>
-        <a
-          className="button button--secondary"
-          href="https://github.com/ambersariya"
-          target="_blank"
-          rel="noopener noreferrer">
-          GitHub
-        </a>
+      <div className="wip-hero__copy">
+        <p className="wip-eyebrow">Theory is easy. Prod is hard.</p>
+        <h1 id="homepage-title">Works in Prod</h1>
+        <p className="wip-hero__subtitle">
+          Building software that survives production.
+        </p>
+        <p className="wip-hero__body">
+          Practical notes on AI engineering, architecture, testing,
+          observability, developer experience, and the awkward bits that only
+          show up after something ships.
+        </p>
+        <p className="wip-hero__aside">
+          Vibe-posted. Fact-checked. Mostly.
+        </p>
+        <div className="wip-hero__actions" aria-label="Primary links">
+          <a className="button button--primary" href="#start-here">
+            Start reading
+          </a>
+          <Link className="button button--secondary" to="/about/">
+            About Danish
+          </Link>
+        </div>
       </div>
+      <TerminalCard />
     </section>
   );
 }
@@ -170,8 +213,8 @@ function TopicSection() {
   return (
     <section className="wip-section" aria-labelledby="topics-title">
       <div className="wip-section__header">
-        <p className="wip-eyebrow">Start somewhere useful</p>
-        <h2 id="topics-title">Topics I write about</h2>
+        <p className="wip-eyebrow">Browse by theme</p>
+        <h2 id="topics-title">Topics I Write About</h2>
       </div>
       <div className="wip-topic-grid">
         {TOPICS.map((topic) => (
@@ -191,10 +234,10 @@ function FeaturedPosts({posts}) {
   }
 
   return (
-    <section className="wip-section" aria-labelledby="featured-title">
+    <section className="wip-section" id="start-here" aria-labelledby="featured-title">
       <div className="wip-section__header">
-        <p className="wip-eyebrow">Good entry points</p>
-        <h2 id="featured-title">Featured posts</h2>
+        <p className="wip-eyebrow">Start Here</p>
+        <h2 id="featured-title">Featured Posts</h2>
       </div>
       <div className="wip-featured-grid">
         {posts.map((post) => (
@@ -211,6 +254,7 @@ function AuthorCard() {
       <div>
         <p className="wip-eyebrow">About the author</p>
         <h2 id="author-title">Danish Javed</h2>
+        <p className="wip-author-card__role">Senior Software Engineer</p>
         <p>
           Senior Software Engineer writing about the parts of software delivery
           that survive contact with production.
@@ -229,7 +273,27 @@ function AuthorCard() {
           rel="noopener noreferrer">
           LinkedIn
         </a>
+        <a
+          href="https://www.meetup.com/software-crafters-manchester/"
+          target="_blank"
+          rel="noopener noreferrer">
+          Software Crafters Manchester
+        </a>
       </div>
+    </section>
+  );
+}
+
+function CurrentFocusCard() {
+  return (
+    <section className="wip-focus-card" aria-labelledby="focus-title">
+      <p className="wip-eyebrow">Current focus</p>
+      <h2 id="focus-title">What keeps showing up in the work</h2>
+      <ul>
+        {CURRENT_FOCUS.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
     </section>
   );
 }
@@ -239,7 +303,7 @@ function RecentPosts({posts}) {
     <section className="wip-section" aria-labelledby="latest-posts">
       <div className="wip-section__header">
         <p className="wip-eyebrow">Latest notes</p>
-        <h2 id="latest-posts">Recent posts</h2>
+        <h2 id="latest-posts">Recent Posts</h2>
       </div>
       <div className="wip-recent-list">
         {posts.map((post) => (
@@ -257,12 +321,17 @@ function BlogListPageContent({metadata, items, sidebar}) {
   ).filter(Boolean);
 
   return (
-    <BlogLayout sidebar={sidebar}>
-      <HomepageHero />
-      <TopicSection />
-      <FeaturedPosts posts={featuredPosts} />
-      <AuthorCard />
-      <RecentPosts posts={posts} />
+    <BlogLayout>
+      <div className="wip-homepage-shell">
+        <HomepageHero />
+        <FeaturedPosts posts={featuredPosts} />
+        <TopicSection />
+        <div className="wip-homepage-split">
+          <AuthorCard />
+          <CurrentFocusCard />
+        </div>
+        <RecentPosts posts={posts} />
+      </div>
       <BlogListPaginator metadata={metadata} />
     </BlogLayout>
   );

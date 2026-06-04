@@ -69,17 +69,11 @@ That is a much nicer mental model than "I probably installed this with whatever 
 
 ## mise Is the Toolchain Layer
 
-I already wrote about using mise to make [project setup boring](/stop-arguing-with-your-terminal-about-python-versions/), but the global Mac version of the idea is just as satisfying.
+I already wrote about using mise to make [project setup boring](/stop-arguing-with-your-terminal-about-python-versions/), so I will not rehash that whole argument here.
 
-mise gives me one place to say what belongs in the developer toolbox. Language runtimes, formatters, search tools, CLIs, and project-adjacent utilities all live behind one model. The exact list changes over time, but the model does not.
+The short version: mise is where the developer toolchain belongs. Language runtimes, formatters, search tools, CLIs, and project-adjacent utilities all live behind one model. The exact list changes over time, but the ownership rule does not.
 
-There is a quiet relief in opening a terminal and trusting that the same activation path is responsible for the tools I use every day. No old version-manager startup block. No random shell snippets from five language ecosystems fighting for priority. No "which runtime is this?" before I have even started working.
-
-It also makes the machine feel less precious. If I change the tool list, I change the source. If I rebuild the machine, mise can rebuild the toolchain. If a tool moves from "Mac package" to "developer runtime", it has a proper home.
-
-That last point matters more than it sounds. Most messy setups do not become messy in one dramatic moment. They become messy through a thousand small exceptions that all seemed reasonable at the time.
-
-mise removes a lot of those exceptions.
+In this post, the important thing is not any specific tool. It is the boundary. If something is part of the developer toolbox, it goes in the toolchain layer instead of becoming another one-off shell snippet or README memory.
 
 ## chezmoi Is the Memory
 
