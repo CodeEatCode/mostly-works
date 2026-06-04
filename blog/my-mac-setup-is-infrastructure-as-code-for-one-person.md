@@ -3,7 +3,6 @@ title: My Mac Setup Is Infrastructure as Code for One Person
 slug: my-mac-setup-is-infrastructure-as-code-for-one-person
 description: A field note on using Homebrew, mise, and chezmoi to make a Mac reproducible without sanding off the human parts.
 date: 2026-06-04T00:00:00.000Z
-modified: 2026-06-04T00:00:00.000Z
 authors: [ambersariya]
 tags:
   - macos
@@ -11,10 +10,6 @@ tags:
   - developer-experience
   - mise
   - chezmoi
-draft: true
-generated_by: public-seed-draft
-source_seed: publishing/public-seeds/my-mac-setup-is-infrastructure-as-code-for-one-person.md
-template: pattern-note
 ---
 
 I have become weirdly happy with my Mac setup.
