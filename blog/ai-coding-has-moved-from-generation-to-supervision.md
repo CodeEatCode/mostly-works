@@ -4,7 +4,7 @@ slug: ai-coding-has-moved-from-generation-to-supervision
 description: The 2026 AI engineering shift is less about code generation and more about the supervision loops that keep agentic work reviewable, secure, and maintainable.
 date: 2026-06-02T16:45:12.804Z
 modified: 2026-06-02T16:45:12.804Z
-draft: true
+draft: false
 generated_by: public-seed-draft
 source_seed: publishing/public-seeds/ai-coding-has-moved-from-generation-to-supervision.md
 template: pattern-note
